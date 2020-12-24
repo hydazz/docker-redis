@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 mkdir -p \
-  /config/{log}
+  /config/log
 
 [[ ! -f /config/redis.conf ]] &&
   cp /defaults/redis.conf /config/redis.conf
