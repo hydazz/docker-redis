@@ -21,4 +21,4 @@ docker run -d \
 ```
 
 ## Todo
-* Test
+* Fix `Could not create server TCP listening socket 0.0.0.0:6379: bind: Address in use`
