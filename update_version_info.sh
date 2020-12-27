@@ -1,7 +1,6 @@
 #!/bin/bash
 
 OVERLAY_VERSION=$(curl -sX GET "https://raw.githubusercontent.com/hydazz/docker-baseimage-alpine/main/version_info.json" | jq -r .overlay_version)
-REDIS_VERSION=$(cat package_versions.txt | grep -E "redis.*?-" | sed -n 1p | cut -c 7- | sed -E 's/-r.*//g')
 OLD_OVERLAY_VERSION=$(cat version_info.json | jq -r .overlay_version)
 OLD_REDIS_VERSION=$(cat version_info.json | jq -r .redis_version)
 

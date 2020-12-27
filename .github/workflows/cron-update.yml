@@ -25,7 +25,7 @@ jobs:
           echo "::set-output name=GIT_BRANCH::$GIT_BRANCH"
           echo "::set-output name=DOCKERHUB_IMAGE::$DOCKERHUB_IMAGE"
           echo "::set-output name=DOCKERIMAGE_TAG::$DOCKERIMAGE_TAG"
-          echo "::set-output name=VERSION::$(cat package_versions.txt | grep -E "redis.*?-" | sed -n 1p | cut -c 7- | sed -E 's/-r.*//g')"
+          echo "::set-output name=VERSION::$(curl -sX GET "https://api.github.com/repos/redis/redis/releases/latest" | jq -r .tag_name)"
 
       - name: Docker Login
         env:
@@ -59,6 +59,8 @@ jobs:
 
       - name: Update README.md
         id: readme
+        env:
+          REDIS_VERSION: ${{ steps.variables.outputs.VERSION }}
         run: |
           echo "::set-output name=OLD_MD5::$(md5sum README.md | awk '{ print $1 }')"
           chmod +x update_version_info.sh && ./update_version_info.sh
