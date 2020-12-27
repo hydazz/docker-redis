@@ -11,19 +11,27 @@ RUN \
    apk add --no-cache --virtual=build-dependencies \
       coreutils \
       curl \
-      dpkg-dev dpkg \
+      dpkg-dev \
+      dpkg \
       gcc \
       linux-headers \
       make \
       musl-dev \
       openssl-dev && \
+   echo "**** install runtime packages ****" && \
+   apk add --no-cache --upgrade \
+      logrotate && \
+   echo "**** fix logrotate ****" && \
+   sed -i "s#/var/log/messages {}.*# #g" /etc/logrotate.conf && \
+   sed -i 's#/usr/sbin/logrotate /etc/logrotate.conf#/usr/sbin/logrotate /etc/logrotate.conf -s /config/log/logrotate.status#g' \
+      /etc/periodic/daily/logrotate
    mkdir -p /usr/src/redis && \
    echo "**** download redis ****" && \
    curl -o \
-      /tmp/redis.tar.gz -L \
+   /tmp/redis.tar.gz -L \
       "http://download.redis.io/releases/redis-${VERSION}.tar.gz" && \
    tar xzf \
-      /tmp/redis.tar.gz -C \
+   /tmp/redis.tar.gz -C \
       /usr/src/redis --strip-components=1 && \
    echo "**** configure redis for building ****" && \
    grep -E '^ *createBoolConfig[(]"protected-mode",.*, *1 *,.*[)],$' /usr/src/redis/src/config.c && \

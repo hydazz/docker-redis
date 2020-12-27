@@ -1,0 +1,14 @@
+/config/log/redis/*.log {
+     weekly
+     rotate 14
+     compress
+     delaycompress
+     nodateext
+     notifempty
+     missingok
+     sharedscripts
+     postrotate
+          s6-svc -t /var/run/s6/services/redis
+     endscript
+     su abc abc
+}
