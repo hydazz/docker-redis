@@ -18,12 +18,14 @@ RUN \
       musl-dev \
       openssl-dev && \
    mkdir -p /usr/src/redis && \
+   echo "**** download redis ****" && \
    curl -o \
       /tmp/redis.tar.gz -L \
       "http://download.redis.io/releases/redis-${VERSION}.tar.gz" && \
    tar xzf \
       /tmp/redis.tar.gz -C \
       /usr/src/redis --strip-components=1 && \
+   echo "**** configure redis for building ****" && \
    grep -E '^ *createBoolConfig[(]"protected-mode",.*, *1 *,.*[)],$' /usr/src/redis/src/config.c && \
    sed -ri 's!^( *createBoolConfig[(]"protected-mode",.*, *)1( *,.*[)],)$!\10\2!' /usr/src/redis/src/config.c && \
    grep -E '^ *createBoolConfig[(]"protected-mode",.*, *0 *,.*[)],$' /usr/src/redis/src/config.c && \
@@ -39,23 +41,18 @@ RUN \
    sed -ri 's!cd jemalloc && ./configure !&'"$extraJemallocConfigureFlags"' !' /usr/src/redis/deps/Makefile && \
    grep -F "cd jemalloc && ./configure $extraJemallocConfigureFlags " /usr/src/redis/deps/Makefile && \
    export BUILD_TLS=yes && \
+   echo "**** build redis ****" && \
    make -C /usr/src/redis -j "$(nproc)" all && \
    make -C /usr/src/redis install && \
+   echo "**** deduplicate redis-server copies ****" && \
    serverMd5="$(md5sum /usr/local/bin/redis-server | cut -d' ' -f1)"; export serverMd5; \
    find /usr/local/bin/redis* -maxdepth 0 \
       -type f -not -name redis-server \
       -exec sh -eux -c ' \
-         md5="$(md5sum "$1" | cut -d" " -f1)"; \
-         test "$md5" = "$serverMd5"; \
+           md5="$(md5sum "$1" | cut -d" " -f1)"; \
+           test "$md5" = "$serverMd5"; \
       ' -- '{}' ';' \
       -exec ln -svfT 'redis-server' '{}' ';' && \
-   runDeps="$( \
-      scanelf --needed --nobanner --format '%n#p' --recursive /usr/local \
-         | tr ',' '\n' \
-         | sort -u \
-         | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }')" && \
-   apk add --no-cache \
-      $runDeps && \
    echo "**** cleanup ****" && \
    apk del --purge \
       build-dependencies && \
