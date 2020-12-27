@@ -24,7 +24,7 @@ RUN \
    echo "**** fix logrotate ****" && \
    sed -i "s#/var/log/messages {}.*# #g" /etc/logrotate.conf && \
    sed -i 's#/usr/sbin/logrotate /etc/logrotate.conf#/usr/sbin/logrotate /etc/logrotate.conf -s /config/log/logrotate.status#g' \
-      /etc/periodic/daily/logrotate
+      /etc/periodic/daily/logrotate && \
    mkdir -p /usr/src/redis && \
    echo "**** download redis ****" && \
    curl -o \
