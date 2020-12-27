@@ -21,4 +21,4 @@ docker run -d \
 ```
 
 ## Todo
-* Fix `Could not create server TCP listening socket 0.0.0.0:6379: bind: Address in use`
+* Test if redis works

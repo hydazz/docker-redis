@@ -1,3 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-s6-setuidgid abc exec redis-server /config/redis.conf;
+exec \
+  s6-setuidgid abc redis-server \
+  /config/redis.conf
