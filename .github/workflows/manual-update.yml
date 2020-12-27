@@ -29,7 +29,7 @@ jobs:
           echo "::set-output name=GIT_BRANCH::$GIT_BRANCH"
           echo "::set-output name=DOCKERHUB_IMAGE::$DOCKERHUB_IMAGE"
           echo "::set-output name=DOCKERIMAGE_TAG::$DOCKERIMAGE_TAG"
-          echo "::set-output name=VERSION::$(cat package_versions.txt | grep -E "mariadb.*?-" | sed -n 1p | cut -c 9- | sed -E 's/-r.*//g')"
+          echo "::set-output name=VERSION::$(cat package_versions.txt | grep -E "redis.*?-" | sed -n 1p | cut -c 7- | sed -E 's/-r.*//g')"
 
       - name: Docker Login
         env:
