@@ -21,6 +21,7 @@ docker run -d \
   --restart unless-stopped \
   vcxpz/redis
 ```
+On Unraid? Theres a [template](https://github.com/hydazz/docker-templates/blob/main/hydaz/redis.xml)
 
 ## Todo
 * Nothing, everything works 🙂
