@@ -28,10 +28,10 @@ RUN \
    mkdir -p /usr/src/redis && \
    echo "**** download redis ****" && \
    curl -o \
-   /tmp/redis.tar.gz -L \
+      /tmp/redis.tar.gz -L \
       "http://download.redis.io/releases/redis-${VERSION}.tar.gz" && \
    tar xzf \
-   /tmp/redis.tar.gz -C \
+      /tmp/redis.tar.gz -C \
       /usr/src/redis --strip-components=1 && \
    echo "**** configure redis for building ****" && \
    grep -E '^ *createBoolConfig[(]"protected-mode",.*, *1 *,.*[)],$' /usr/src/redis/src/config.c && \
