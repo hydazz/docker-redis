@@ -72,6 +72,10 @@ RUN \
 # add local files
 COPY root/ /
 
+# redis healthcheck
+HEALTHCHECK --start-period=10s --timeout=5s \
+   CMD redis-cli ping || exit 1
+
 # ports and volumes
 EXPOSE 6379
 VOLUME /config
