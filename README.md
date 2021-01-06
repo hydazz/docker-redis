@@ -8,6 +8,7 @@ This container uses redis.conf rather than specifying everything in the `redis-s
 
 ## Version Information
 ![alpine](https://img.shields.io/badge/alpine-edge-0D597F?style=for-the-badge&logo=alpine-linux) ![s6 overlay](https://img.shields.io/badge/s6_overlay-2.1.0.2-blue?style=for-the-badge) ![redis](https://img.shields.io/badge/redis-6.0.9-DC382D?style=for-the-badge&logo=redis)
+
 **[See here for a list of packages](https://github.com/hydazz/docker-redis/blob/main/package_versions.txt)**
 
 ## Usage
