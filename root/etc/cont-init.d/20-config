@@ -6,7 +6,8 @@ mkdir -p \
 
 [[ ! -f /config/redis.conf ]] &&
 	cp /defaults/redis.conf /config/redis.conf
-
+	
+# permissions
 chown -R abc:abc \
 	/config \
 	/var/run/redis/
