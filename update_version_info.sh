@@ -3,15 +3,15 @@
 OVERLAY_VERSION=$(cat package_versions.txt | grep -E "s6-overlay.*?-" | sed -n 1p | cut -c 12- | sed -E 's/-r.*//g')
 
 OLD_OVERLAY_VERSION=$(cat version_info.json | jq -r .overlay_version)
-OLD_REDIS_VERSION=$(cat version_info.json | jq -r .redis_version)
+OLD_REDIS_RELEASE=$(cat version_info.json | jq -r .redis_version)
 
 sed -i \
-  -e "s/${OLD_OVERLAY_VERSION}/${OVERLAY_VERSION}/g" \
-  -e "s/${OLD_REDIS_VERSION}/${REDIS_VERSION}/g" \
-  README.md
+	-e "s/${OLD_OVERLAY_VERSION}/${OVERLAY_VERSION}/g" \
+	-e "s/${OLD_REDIS_RELEASE}/${REDIS_RELEASE}/g" \
+	README.md
 
 NEW_VERSION_INFO="overlay_version|redis_version
-${OVERLAY_VERSION}|${REDIS_VERSION}"
+${OVERLAY_VERSION}|${REDIS_RELEASE}"
 
 jq -Rn '
 ( input  | split("|") ) as $keys |
