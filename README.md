@@ -23,7 +23,7 @@ docker run -d \
   --restart unless-stopped \
   vcxpz/redis
 ```
-On Unraid? There's a [template](https://github.com/hydazz/docker-templates/blob/main/hydaz/redis.xml)
+[![auto build](https://img.shields.io/badge/unraid_template-ff8c2f?style=for-the-badge&logo=docker?color=d1aa67)](https://github.com/hydazz/docker-templates/blob/main/hydaz/redis.xml)
 
 ## Upgrading Redis
 To upgrade, all you have to do is pull our latest Docker image. We automatically check for Redis updates daily so there may be some delay when an update is released to when the image is updated.
