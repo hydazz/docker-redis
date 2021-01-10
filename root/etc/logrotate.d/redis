@@ -1,4 +1,4 @@
-/config/log/redis/*.log {
+/config/log/*.log {
      weekly
      rotate 14
      compress
