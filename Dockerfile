@@ -6,7 +6,7 @@ ARG VERSION
 LABEL build_version="Redis version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydaz"
 
-RUN set -x && \
+RUN set -xe && \
    echo "**** install build packages ****" && \
    apk add --no-cache --virtual=build-dependencies \
       coreutils \
