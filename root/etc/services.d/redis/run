@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bash
 
+echo "Starting Redis."
 exec s6-setuidgid abc \
 	redis-server \
 	/config/redis.conf
