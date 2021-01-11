@@ -1,6 +1,14 @@
 #!/usr/bin/with-contenv bash
 
+redirect_cmd() {
+	if [[ "${DEBUG}" == "true" ]]; then
+		"$@"
+	else
+		"$@" >/dev/null 2>&1
+	fi
+}
+
 echo "Starting Redis."
-exec s6-setuidgid abc \
+redirect_cmd exec s6-setuidgid abc \
 	redis-server \
 	/config/redis.conf
