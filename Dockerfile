@@ -18,9 +18,6 @@ RUN set -xe && \
       make \
       musl-dev \
       openssl-dev && \
-   echo "**** install runtime packages ****" && \
-   apk add --no-cache --upgrade \
-      logrotate && \
    mkdir -p /usr/src/redis && \
    echo "**** download redis ****" && \
    curl -o \
@@ -57,10 +54,6 @@ RUN set -xe && \
            test "$md5" = "$serverMd5"; \
       ' -- '{}' ';' \
       -exec ln -svfT 'redis-server' '{}' ';' && \
-   echo "**** fix logrotate ****" && \
-   sed -i "s#/var/log/messages {}.*# #g" /etc/logrotate.conf && \
-   sed -i 's#/usr/sbin/logrotate /etc/logrotate.conf#/usr/sbin/logrotate /etc/logrotate.conf -s /config/log/logrotate.status#g' \
-      /etc/periodic/daily/logrotate && \
    echo "**** cleanup ****" && \
    apk del --purge \
       build-dependencies && \
