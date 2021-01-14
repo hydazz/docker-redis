@@ -1,4 +1,4 @@
 {
   "overlay_version": "2.1.0.2",
-  "redis_version": "6.0.9"
+  "redis_release": "6.0.9"
 }

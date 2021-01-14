@@ -10,7 +10,7 @@ sed -i \
 	-e "s/${OLD_REDIS_RELEASE}/${REDIS_RELEASE}/g" \
 	README.md
 
-NEW_VERSION_INFO="overlay_version|redis_version
+NEW_VERSION_INFO="overlay_version|redis_release
 ${OVERLAY_VERSION}|${REDIS_RELEASE}"
 
 jq -Rn '
