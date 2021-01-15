@@ -20,7 +20,7 @@ RUN set -xe && \
       openssl-dev && \
    mkdir -p /usr/src/redis && \
    echo "**** download redis ****" && \
-   curl -o \
+   curl --silent -o \
       /tmp/redis.tar.gz -L \
       "http://download.redis.io/releases/redis-${REDIS_RELEASE}.tar.gz" && \
    tar xzf \
