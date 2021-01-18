@@ -6,12 +6,12 @@ ARG VERSION
 LABEL build_version="Redis version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydaz"
 
-RUN set -xe && \
+RUN \
    echo "**** install runtime packages ****" && \
    apk add --no-cache --upgrade \
-      redis && \
+     redis && \
    rm -rf \
-      /tmp/*
+     /tmp/*
 
 # add local files
 COPY root/ /
