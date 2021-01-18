@@ -2,8 +2,8 @@ FROM vcxpz/baseimage-alpine:latest
 
 # set version label
 ARG BUILD_DATE
-ARG REDIS_RELEASE
-LABEL build_version="Redis version:- ${REDIS_RELEASE} Build-date:- ${BUILD_DATE}"
+ARG VERSION
+LABEL build_version="Redis version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydaz"
 
 RUN set -xe && \
@@ -22,7 +22,7 @@ RUN set -xe && \
    echo "**** download redis ****" && \
    curl --silent -o \
       /tmp/redis.tar.gz -L \
-      "http://download.redis.io/releases/redis-${REDIS_RELEASE}.tar.gz" && \
+      "http://download.redis.io/releases/redis-${VERSION}.tar.gz" && \
    tar xzf \
       /tmp/redis.tar.gz -C \
       /usr/src/redis --strip-components=1 && \
