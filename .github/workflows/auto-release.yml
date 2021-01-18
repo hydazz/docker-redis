@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
-          VERSION=$(curl -sX GET "https://api.github.com/repos/redis/redis/releases/latest" | jq -r .tag_name)
+          VERSION=$(curl -sSL "https://raw.githubusercontent.com/alpinelinux/aports/master/main/redis/APKBUILD" | grep "pkgver=" | sed s/pkgver=//g)
           OLD_VERSION=$(curl -sX GET "https://api.github.com/repos/hydazz/docker-redis/releases/latest" | jq -r .tag_name)
           printf '{
                "tag_name": "'${VERSION}'",
