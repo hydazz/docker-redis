@@ -3,7 +3,7 @@
 OVERLAY_VERSION=$(curl -sX GET "https://raw.githubusercontent.com/hydazz/docker-baseimage-alpine/main/version_info.json" | jq -r .overlay_version)
 
 OLD_OVERLAY_VERSION=$(jq <version_info.json -r .overlay_version)
-OLD_REDIS_RELEASE=$(jq <version_info.json -r .redis_version)
+OLD_REDIS_RELEASE=$(jq <version_info.json -r .redis_release)
 
 sed -i \
 	-e "s/${OLD_OVERLAY_VERSION}/${OVERLAY_VERSION}/g" \
