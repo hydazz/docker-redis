@@ -30,4 +30,4 @@ See [package_versions.txt](package_versions.txt) for a full list of the packages
 
 ## Upgrading Redis
 
-To upgrade, all you have to do is pull our latest Docker image. We automatically check for Redis updates daily so there may be some delay when an update is released to when the image is updated.
+To upgrade, all you have to do is pull the latest Docker image. We automatically check for Redis updates daily so there may be some delay when an update is released to when the image is updated.
