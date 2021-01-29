@@ -8,12 +8,6 @@
 
 This container uses redis.conf rather than specifying everything in the `redis-server` run command like most other images. This file is located in the config folder (`/config/redis.conf` within the container) and can be customised to your hearts content. The defaults are fine for most use cases. If you need help customising this file see [here](https://redis.io/topics/config).
 
-## Version Information
-
-![alpine](https://img.shields.io/badge/alpine-edge-0D597F?style=for-the-badge&logo=alpine-linux) ![redis](https://img.shields.io/badge/redis-6.0.10-DC382D?style=for-the-badge&logo=redis)
-
-See [package_versions.txt](package_versions.txt) for a full list of the packages and package versions used in this image
-
 ## Usage
 
     docker run -d \
