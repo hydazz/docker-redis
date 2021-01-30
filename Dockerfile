@@ -8,18 +8,18 @@ LABEL build_version="Redis version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydaz"
 
 RUN \
-   echo "**** install runtime packages ****" && \
-   apk add --no-cache --upgrade \
-     redis && \
-   rm -rf \
-     /tmp/*
+	echo "**** install runtime packages ****" && \
+	apk add --no-cache --upgrade \
+		redis && \
+	rm -rf \
+		/tmp/*
 
 # add local files
 COPY root/ /
 
 # redis healthcheck
 HEALTHCHECK --start-period=10s --timeout=5s \
-   CMD redis-cli ping || exit 1
+	CMD redis-cli ping || exit 1
 
 # ports and volumes
 EXPOSE 6379
