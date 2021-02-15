@@ -1,5 +1,4 @@
-ARG TAG
-FROM vcxpz/baseimage-alpine:${TAG}
+FROM vcxpz/baseimage-alpine:latest
 
 # set version label
 ARG BUILD_DATE
@@ -8,9 +7,19 @@ LABEL build_version="Redis version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydaz"
 
 RUN \
+	echo "**** install build packages ****" && \
+	apk add --no-cache --virtual=build-dependencies \
+		curl && \
 	echo "**** install runtime packages ****" && \
+	if [ -z ${VERSION+x} ]; then \
+		VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp && \
+			awk '/^P:redis$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); \
+	fi && \
 	apk add --no-cache --upgrade \
-		redis && \
+		redis==${VERSION} && \
+	echo "**** cleanup ****" && \
+	apk del --purge \
+		build-dependencies && \
 	rm -rf \
 		/tmp/*
 
