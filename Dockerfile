@@ -16,7 +16,7 @@ RUN \
 			awk '/^P:redis$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); \
 	fi && \
 	apk add --no-cache --upgrade \
-		redis==${VERSION} && \
+		redis=="${VERSION}" && \
 	echo "**** cleanup ****" && \
 	apk del --purge \
 		build-dependencies && \
