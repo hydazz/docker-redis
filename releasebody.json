@@ -1,8 +1,0 @@
-{
-     "tag_name": "6.0.10-r0",
-     "target_commitish": "",
-     "name": "6.0.10-r0",
-     "body": "Upgrading Redis 6.0.10-r0 to 6.0.10-r0",
-     "draft": false,
-     "prerelease": false
-}
