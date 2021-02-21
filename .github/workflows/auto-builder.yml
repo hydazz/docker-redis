@@ -52,6 +52,7 @@ jobs:
                "prerelease": false
           }' >releasebody.json
           curl -H "Authorization: token ${TOKEN}" -X POST https://api.github.com/repos/hydazz/docker-redis/releases -d @releasebody.json
+          rm releasebody.json
 
       - name: Build The Docker Image Locally
         run: |
