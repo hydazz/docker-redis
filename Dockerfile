@@ -15,7 +15,7 @@ RUN \
 		VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.13/main/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp && \
 			awk '/^P:redis$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); \
 	fi && \
-	apk add --no-cache --upgrade \
+	apk add --no-cache \
 		redis=="${VERSION}" && \
 	echo "**** cleanup ****" && \
 	apk del --purge \
