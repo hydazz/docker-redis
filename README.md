@@ -26,7 +26,7 @@ docker run -d \
 
 ## Upgrading Redis
 
-To upgrade, all you have to do is pull the latest Docker image. We automatically check for Redis updates every hour. When a new version is released, we build and publish an image both as a version tag and on `:latest`.
+To upgrade, all you have to do is pull the latest Docker image. We automatically check for Redis updates daily. When a new version is released, we build and publish an image both as a version tag and on `:latest`.
 
 ## Fixing Appdata Permissions
 
